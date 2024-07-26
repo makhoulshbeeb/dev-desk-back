@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $t) {
             $t->id();
-            $t->unsignedBigInteger('sender_id');
-            $t->foreign('sender')->referance('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $t->unsignedBigInteger('receiver_id');
-            $t->foreign('receiver_id')->refernce('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $t->foreignId('user_id_1')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $t->foreignId('user_id_2')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $t->foreignId('sender_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $t->foreignId('receiver_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $t->timestamps();
