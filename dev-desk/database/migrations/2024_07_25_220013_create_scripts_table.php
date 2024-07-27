@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scripts', function (Blueprint $t) {
-            $t->id();
-            $t->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $t->text('content');
-            $t->string('language',255);
-            $t->timestamps();
+        Schema::create('scripts', function (Blueprint $table) {
+            $table->id();
+            $table->string("username");
+            $table->foreign('username')->references('username')->on('users');  
+            $table->text('content');
+            $table->string('language',255);
+            $table->timestamps();
         });
     }
 

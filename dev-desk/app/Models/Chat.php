@@ -10,11 +10,11 @@ class Chat extends Model
     use HasFactory;
     public function user1()
     {
-        $this->belongsTo(User::class,'user_id_1');
+        $this->belongsTo(User::class,'username_1');
     }
     public function user2()
     {
-        $this->belongsTo(User::class,'user_id_2');
+        $this->belongsTo(User::class,'username_2');
     }
 
     public function hasmessage(){

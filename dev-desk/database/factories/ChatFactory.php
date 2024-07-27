@@ -17,8 +17,8 @@ class ChatFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id_1' => User::factory(),
-            'user_id_2' => User::factory(),
+            'username_1' => $username1 = fake()->randomElement(User::pluck('username')),
+            'username_2' => fake()->randomElement(User::where('username', '!=', $username1)->pluck('username')),
         ];
     }
 }
