@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(50)->create();
-
+        // Calling the UserSeeder and ScriptSeeder
+        $this->call([
+            UserSeeder::class,
+            ScriptSeeder::class,
+        ]);
     }
 }

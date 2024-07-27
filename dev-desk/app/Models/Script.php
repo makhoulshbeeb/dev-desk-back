@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Script extends Model
 {
     use HasFactory;
-    public function user(){
-        $this->belongsTo-(user::class);
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
     }
 }

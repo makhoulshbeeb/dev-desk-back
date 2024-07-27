@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,11 +44,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function script(){
+    /**
+     * Get the scripts for the user.
+     */
+    public function scripts()
+    {
         $this->hasMany(Script::class);
     }
 
-    public function chat(){
+    /**
+     * Get the chats for the user.
+     */
+    public function chats()
+    {
         $this->hasMany(Chat::class);
     }
 }
