@@ -17,6 +17,7 @@ return new class extends Migration
             $t->foreignId('user_id_2')->nullable()->constrained("users")->onDelete('cascade')->onUpdate('cascade');
             // $t->foreignId('sender_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $t->foreignId('receiver_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $t->unique(['user_id_1', 'user_id_2']);
             $t->timestamps();
         });
     }
