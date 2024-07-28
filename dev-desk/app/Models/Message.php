@@ -17,4 +17,9 @@ class Message extends Model
     {
         $this->belongsTo(User::class);
     }
+    protected $fillable = [
+        'username',
+        'chat_id',
+        'message',
+    ];
 }

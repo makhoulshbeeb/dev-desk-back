@@ -20,5 +20,9 @@ class Chat extends Model
     public function hasmessage(){
         $this->hasMany(Message::class);
     }
+    protected $fillable = [
+        'username_1',
+        'username_2',
+    ];
 
 }

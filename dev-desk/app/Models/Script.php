@@ -13,4 +13,9 @@ class Script extends Model
     {
         $this->belongsTo(User::class);
     }
+    protected $fillable = [
+        'username',
+        'content',
+        'language'
+    ];
 }
