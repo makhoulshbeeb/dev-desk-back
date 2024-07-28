@@ -23,7 +23,7 @@ Route::group([
 });
 
 Route::group(
-[
+[   'middleware'=>'admin',
     'prefix'=>'messages',
     'controller'=>MessageController::class,
 ],
