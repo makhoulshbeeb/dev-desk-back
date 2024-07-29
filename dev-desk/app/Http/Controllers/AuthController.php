@@ -9,7 +9,6 @@ use App\Models\User;
 class AuthController extends Controller
 {
 
-
     public function login(Request $request)
     {
         $request->validate([
@@ -25,7 +24,6 @@ class AuthController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
-
         $user = Auth::user();
         return response()->json([
                 'status' => 'success',
@@ -35,9 +33,8 @@ class AuthController extends Controller
                     'type' => 'bearer',
                 ]
             ]);
-
     }
-
+    
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -64,7 +61,6 @@ class AuthController extends Controller
             ]
         ]);
     }
-
     public function logout()
     {
         Auth::logout();
@@ -73,7 +69,6 @@ class AuthController extends Controller
             'message' => 'Successfully logged out',
         ]);
     }
-
     public function refresh()
     {
         return response()->json([
@@ -85,6 +80,5 @@ class AuthController extends Controller
             ]
         ]);
     }
-
 }
 

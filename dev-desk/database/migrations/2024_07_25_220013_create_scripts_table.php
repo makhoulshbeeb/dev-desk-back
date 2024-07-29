@@ -24,6 +24,7 @@ return new class extends Migration
         });
         Schema::create('scripts', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
             $table->string("username");
             $table->foreign('username')->references('username')->on('users');  
             $table->text('content');

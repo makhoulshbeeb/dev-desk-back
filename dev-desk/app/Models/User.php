@@ -51,7 +51,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function scripts()
     {
-        $this->hasMany(Script::class);
+        return $this->hasMany(Script::class);
     }
 
     /**
@@ -59,11 +59,11 @@ class User extends Authenticatable implements JWTSubject
      */
     public function chats()
     {
-        $this->hasMany(Chat::class);
+        return $this->hasMany(Chat::class);
     }
     public function messages()
     {
-        $this->hasMany(Message::class);
+        return $this->hasMany(Message::class);
     }
 
     /**

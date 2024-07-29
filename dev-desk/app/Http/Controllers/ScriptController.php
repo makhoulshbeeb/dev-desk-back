@@ -4,62 +4,69 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Script;
-use App\Models\User;
+use App\Http\Requests\StoreScriptRequest;
+use App\Http\Requests\UpdateScriptRequest;
+use Illuminate\Support\Facades\Auth;
+
 class ScriptController extends Controller
 {
-
-    public function getAllScripts()
+    public function index()
     {
         $scripts = Script::all();
         return response()->json($scripts, 200);
     }
 
-    public function getScript(Request $req)
+    public function store(StoreScriptRequest $request)
     {
-        $script = Script::find($req->id);
-        if (!$script) {
-            return response()->json(['error' => 'Script not found'], 404);
-        }
-        return response()->json($script, 200);
+
+        $scriptData= Script::create($request->validated());
+        return response()->json([
+            'message' => 'Script created successfully',
+            'script' => $scriptData
+        ], 201);
     }
 
-    public function createScript(Request $req)
+    public function update(UpdateScriptRequest $request, script $script)
     {
-        $username = $req->input('username');
-        $validatedUser = User::where('username', $username)->first();
-
-        if (!$validatedUser) {
-            return response()->json(['error' => 'Username not found'], 404);
-        }
-
-        $script = Script::create([
-            'username' => $req->username,
-            'content' => $req->content,
-            'language' => $req->language,
-        ]);
-        
-        return response()->json($script, 201);
+        $script->update($request->validated());
+        return response()->json([
+            'message' => 'Script updated successfully',
+            'script' => $script
+        ], 200);
     }
 
-    public function updateScript(Request $req)
+    public function destroy(Script $script)
     {
-        $script = Script::find($req->id);
-        if (!$script) {
-            return response()->json(['error' => 'Script not found'], 404);
-        }
-        $script->content = $req->content;
-        $script->language = $req->language;
-        $script->save();
-
-        return response()->json($script, 200);
-    }
-    public function deleteScript(Request $req)
-    {
-        $script = Script::find($req->id);
-        if (!$script) {
-            return response()->json(['error' => 'Script not found'], 404);
-        }
         $script->delete();
-        return response()->json(['message' => 'Script deleted successfully'], 200);
+        return response()->json(null, 204);
+    }
+
+    public function getScriptbyID($id)
+    {
+        $script = Script::find($id);
+        if (!$script) {
+            return response()->json(['error' => 'Script not found'], 404);
+        }
+        return response()->json($script, 200);
+    }
+
+
+
+    public function getScriptbyUsername($username)
+    {
+        $scripts = Script::where('username', $username)->get();
+        if ($scripts->isEmpty()) {
+            return response()->json(['message' => 'No scripts found'], 404);
+        }
+        return response()->json($scripts, 200);
+    }
+
+    public function getScriptbyLike($username)
+    {
+        $scripts = Script::where('username', 'LIKE', '%' . $username . '%')->get();
+        if ($scripts->isEmpty()) {
+            return response()->json(['message' => 'No scripts found'], 404);
+        }
+        return response()->json($scripts, 200);
     }
 }

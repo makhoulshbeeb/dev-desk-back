@@ -10,15 +10,15 @@ class Chat extends Model
     use HasFactory;
     public function user1()
     {
-        $this->belongsTo(User::class,'username_1');
+        return $this->belongsTo(User::class,'username_1');
     }
     public function user2()
     {
-        $this->belongsTo(User::class,'username_2');
+        return $this->belongsTo(User::class,'username_2');
     }
 
     public function hasmessage(){
-        $this->hasMany(Message::class);
+        return $this->hasMany(Message::class);
     }
     protected $fillable = [
         'username_1',

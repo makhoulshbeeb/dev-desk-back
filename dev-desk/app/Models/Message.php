@@ -10,12 +10,12 @@ class Message extends Model
     use HasFactory;
     public function message()
     {
-        $this->belongsTo(Chat::class);
+        return $this->belongsTo(Chat::class);
     }
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
     protected $fillable = [
         'username',

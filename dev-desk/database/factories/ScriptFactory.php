@@ -17,6 +17,7 @@ class ScriptFactory extends Factory
     public function definition(): array
     {
         return [
+            'name'=>fake()->name(),
             'username' => fake()->randomElement(User::pluck('username')),
             'content' => fake()->text(),
             'language' => fake()->randomElement(['Python', 'CSS', 'JavaScript', 'C++', 'js']),

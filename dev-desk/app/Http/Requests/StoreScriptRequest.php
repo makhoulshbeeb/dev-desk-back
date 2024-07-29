@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class StoreScriptRequest extends FormRequest
 {
     /**
@@ -23,8 +24,9 @@ class StoreScriptRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'username'=>'required|string',
             'language' => 'required|string',
-            'content' => 'required|string',
+            'content'=>'required|string'
         ];
     }
 }
