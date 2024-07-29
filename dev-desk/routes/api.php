@@ -36,18 +36,18 @@ function() {
 });
 
 
-Route::group(
-[
-    'prefix' => 'chats',
-    'controller' => ChatController::class,
-],
-function() {
-    Route::get('/getall', 'getAllChats');
-    Route::post('/getby', 'getChat');
-    Route::post('/create', 'createChat');
-    Route::post('/update', 'updateChat');
-    Route::post('/delete', 'deleteChat');
-});
+// Route::group(
+// [
+//     'prefix' => 'chats',
+//     'controller' => ChatController::class,
+// ],
+// function() {
+//     Route::get('/getall', 'getAllChats');
+//     Route::post('/getby', 'getChat');
+//     Route::post('/create', 'createChat');
+//     Route::post('/update', 'updateChat');
+//     Route::post('/delete', 'deleteChat');
+// });
 
 
 Route::group(
@@ -62,3 +62,6 @@ function() {
     Route::post('/update', 'updateScript');
     Route::post('/delete', 'deleteScript');
 });
+
+
+Route::apiResource('chats', ChatController::class)->middleware('user');

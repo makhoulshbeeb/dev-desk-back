@@ -22,9 +22,24 @@ class MessageController extends Controller
                 "messages" => $messages
             ], 200);
         }
+    //   public function getAllMessages($id)
+    //     {
+    //         $this->middleware('admin');
+    //         $messages = Message::find($id);
+    //         // $messages = Message::get();
+    //         if (!$messages) {
+    //             return response()->json([
+    //                 'error' => 'Message not found'
+    //             ], 404);
+    //         }
+    //         return response()->json([
+    //             "messages" => $messages
+    //         ], 200);
+    //     }
 
     public function getMessage(Request $req)
         {
+            // $this->middleware('admin');
             $username = $req->input('username');
             $messages = Message::where('username', $username)->get();
     
