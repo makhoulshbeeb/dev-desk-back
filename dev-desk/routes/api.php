@@ -23,20 +23,6 @@ Route::group([
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 });
 
-Route::group(
-[   'middleware'=>'user',
-    'prefix'=>'messages',
-    'controller'=>MessageController::class,
-],
-function() {
-    Route::get('/getall', 'getAllMessages');
-    Route::post('/getby', 'getMessage');
-    Route::post('/create', 'createMessage');
-    Route::post('/delete', 'deleteMessage');
-    Route::post('/update', 'updateMessage');
-});
-
-
 // Route::group(
 // [
 //     'prefix' => 'chats',
@@ -50,26 +36,12 @@ function() {
 //     Route::post('/delete', 'deleteChat');
 // });
 
-
-// Route::group(
-// [
-//         'prefix' => 'scripts',
-//         'controller' => ScriptController::class,
-// ],
-// function() {
-//     Route::get('/getall', 'getAllScripts');
-//     Route::post('/getby', 'getScript');
-//     Route::post('/create', 'createScript');
-//     Route::post('/update', 'updateScript');
-//     Route::delete('/delete/{id}', 'deleteScript');
-// });
-
-
 Route::apiResource('chats', ChatController::class)->middleware('user');
 
 
 Route::group(
 [
+        'middleware'=>'user',
         'prefix' => 'scripts',
         'controller' => ScriptController::class,
 ],
@@ -78,4 +50,19 @@ function() {
     Route::get('/getby/username/{username}', 'getScriptbyUsername');
     Route::get('/search/{username}','getScriptbyLike');
 });
-Route::apiResource('scripts', ScriptController::class);
+Route::apiResource('scripts', ScriptController::class)->middleware('admin');
+
+
+Route::group(
+[   
+    'middleware'=>'user',
+    'prefix'=>'messages',
+    'controller'=>MessageController::class,
+],
+function() {
+    Route::get('/search/{username}', 'getmessagebyLike');
+    Route::get('/getby/username/{username}', 'getMessage');
+    Route::get('/getby/chat_id/{id}', 'getMessagesbychat_id');
+});
+
+Route::apiResource('messages', messageController::class)->middleware('user');
