@@ -20,8 +20,8 @@ class MessageFactory extends Factory
         
         return [
             'chat_id'=>Chat::factory(),
-            'username' => fake()->randomElement(User::pluck('username')),
-            'message'=>fake()->word(),
+            'username' => fake()->randomElement(Chat::pluck('username_1')),
+            'message'=>fake()->sentence(),
         ];
     }
 }

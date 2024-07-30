@@ -51,7 +51,7 @@ class ChatController extends Controller
         ], 201);
     }
 
-    public function update(UpdatechatRequest $request, chat $chat)
+    public function update(UpdateChatRequest $request, chat $chat)
     {
         $chat->update($request->validated());
         return response()->json([
@@ -59,23 +59,35 @@ class ChatController extends Controller
         ], 200);
     }
     
-    public function destroy(chat $chat)
+    public function destroy(chat $id)
     {
         $chat->delete();
-        
         return response()->json(null,204);
         
         
         }
 
-        public function getChat($id)
-    {
-        $chat = Chat::find($req->id);
-        if (!$chat) {
-            return response()->json(['error' => 'Chat not found'], 404);
-        }
-        return response()->json($chat, 200);
-    }
+    //     public function getChat($id)
+    // {
+    //     $chat = Chat::find($req->id);
+    //     if (!$chat) {
+    //         return response()->json(['error' => 'Chat not found'], 404);
+    //     }
+    //     return response()->json($chat, 200);
+    // }
 
+    public function getChatByUsername($username)
+    {
+        $chat=Chat::where("username",$username)->get();
+        if ($chat->isEmpty()){
+            return response()-json([
+                "message"=>'no chats found'
+            ],404);
+         }
+        return response()->json([
+            "message"=>$chat,
+            "state"=>"success"
+        ]);
+    }
 }
 

@@ -35,9 +35,9 @@ class ScriptController extends Controller
         ], 200);
     }
 
-    public function destroy(Script $script)
+    public function destroy(Script $id)
     {
-        $script->delete();
+        $id->delete();
         return response()->json(null, 204);
     }
 
