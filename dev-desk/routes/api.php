@@ -8,9 +8,7 @@ use App\Http\Controllers\ScriptController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\DB;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
 
 Route::group([
     'middleware' => 'api',
@@ -22,20 +20,20 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 });
-
+Route::get('/user', [AuthController::class, 'getAllUser'])->middleware('admin');
 Route::group(
-[
+[   'middleware'=>'user',
     'prefix' => 'chats',
     'controller' => ChatController::class,
 ],
 function() {
-    Route::get('/getall', 'getAllChats');
-    Route::post('/getby', 'getChat');
-    Route::post('/create', 'createChat');
-    Route::post('/update', 'updateChat');
-    Route::post('/delete', 'deleteChat');
+    Route::get('/{username}', 'getChatByUsername');
+    // Route::get('/getby', 'getChat');
+    // Route::get('/create', 'createChat');
+    // Route::get('/update', 'updateChat');
+    // Route::get('/delete', 'deleteChat');
 });
-Route::apiResource('chats', ChatController::class)->middleware('user');
+Route::apiResource('chats', ChatController::class)->middleware('admin');
 
 
 Route::group(
@@ -64,4 +62,4 @@ function() {
     Route::get('/{id}', 'getMessagesbychat_id');
 });
 
-Route::apiResource('messages', messageController::class)->middleware('user');
+Route::apiResource('messages', messageController::class);//->middleware('admin');
