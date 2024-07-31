@@ -13,6 +13,24 @@ class AuthController extends Controller
         $user=User::all();
         return response()->json($user, 200);
     }
+
+    public function updateuserrole(Request $req, $id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->update(['role' => $req->role]);
+            $user->update(['password'=>$req->password]);
+            return response()->json([
+                'message' => 'User role updated successfully',
+                'user' => $user
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+    }
+
     public function login(Request $request)
     {
         $request->validate([

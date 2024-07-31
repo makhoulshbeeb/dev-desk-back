@@ -69,4 +69,16 @@ class ScriptController extends Controller
         }
         return response()->json($scripts, 200);
     }
+
+    public function getScriptbyname(Request $request)
+{
+    $script = $request->input('name');
+    $scripts = Script::where('name', $request->name)->get();
+    if ($scripts->isEmpty()) {
+        return response()->json(['message' => "No script found for this name"], 404);
+    }
+    return response()->json($scripts, 200);
+}
+    
+
 }

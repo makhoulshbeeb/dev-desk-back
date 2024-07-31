@@ -20,7 +20,8 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 });
-Route::get('/user', [AuthController::class, 'getAllUser'])->middleware('admin');
+Route::put('/updateUser/{id}', [AuthController::class, 'updateuserrole']);
+Route::get('/allUser', [AuthController::class, 'getAllUser'])->middleware('admin');
 Route::group(
 [   'middleware'=>'user',
     'prefix' => 'chats',
@@ -38,14 +39,15 @@ Route::apiResource('chats', ChatController::class)->middleware('admin');
 
 Route::group(
 [
-        'middleware'=>'user',
+        // 'middleware'=>'user',
         'prefix' => 'scripts',
         'controller' => ScriptController::class,
 ],
 function() {
     Route::get('/id/{id}', 'getScriptbyID');
     Route::get('/{username}', 'getScriptbyUsername');
-    Route::get('/search/{username}','getScriptbyLike'); //redo with name
+    Route::get('/search/{username}','getScriptbyLike');
+    Route::post('/name','getScriptbyname');
 });
 Route::apiResource('scripts', ScriptController::class)->middleware('admin');
 
