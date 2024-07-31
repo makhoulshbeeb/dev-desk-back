@@ -39,7 +39,7 @@ Route::apiResource('chats', ChatController::class)->middleware('admin');
 
 Route::group(
 [
-        // 'middleware'=>'user',
+        'middleware'=>'user',
         'prefix' => 'scripts',
         'controller' => ScriptController::class,
 ],
@@ -64,4 +64,4 @@ function() {
     Route::get('/{id}', 'getMessagesbychat_id');
 });
 
-Route::apiResource('messages', messageController::class);//->middleware('admin');
+Route::apiResource('messages', messageController::class)->middleware('admin');
