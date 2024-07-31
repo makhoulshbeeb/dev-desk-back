@@ -26,7 +26,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("username");
-            $table->foreign('username')->references('username')->on('users');  
+            $table->foreign('username')->references('username')->on('users')->onDelete('cascade')->onUpdate('cascade');  
             $table->text('content');
             $table->string('language',255);
             $table->timestamps();

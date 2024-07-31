@@ -20,7 +20,7 @@ class ScriptFactory extends Factory
             'name'=>fake()->name(),
             'username' => fake()->randomElement(User::pluck('username')),
             'content' => fake()->text(),
-            'language' => fake()->randomElement(['Python', 'CSS', 'JavaScript', 'C++', 'js']),
+            'language' => fake()->randomElement(['javascript', 'typescript', 'python', 'java', 'csharp', 'php']),
         ];
     }
 }

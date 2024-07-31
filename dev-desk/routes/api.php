@@ -34,7 +34,7 @@ function() {
     // Route::get('/update', 'updateChat');
     // Route::get('/delete', 'deleteChat');
 });
-Route::apiResource('chats', ChatController::class);//->middleware('admin');
+Route::apiResource('chats', ChatController::class)->middleware('user');
 
 
 Route::group(
@@ -49,12 +49,12 @@ function() {
     Route::get('/search/{username}','getScriptbyLike');
     Route::post('/name','getScriptbyname');
 });
-Route::apiResource('scripts', ScriptController::class);//->middleware('admin');
+Route::apiResource('scripts', ScriptController::class)->middleware('user');
 
 
 Route::group(
 [   
-    //'middleware'=>'user',
+    'middleware'=>'user',
     'prefix'=>'messages',
     'controller'=>MessageController::class,
 ],
