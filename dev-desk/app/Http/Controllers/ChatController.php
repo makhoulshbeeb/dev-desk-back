@@ -59,9 +59,9 @@ class ChatController extends Controller
         ], 200);
     }
     
-    public function destroy(chat $id)
+    public function destroy(chat $chat)
     {
-        $id->delete();
+        $chat->delete();
         return response()->json(null,204);
         
         
@@ -76,18 +76,15 @@ class ChatController extends Controller
     //     return response()->json($chat, 200);
     // }
 
-    public function getChatByUsername($username)
+    public function getChatByUsername($username_1)
     {
-        $chat=Chat::where("username",$username)->get();
+        $chat=Chat::where("username_1",$username_1)->get();
         if ($chat->isEmpty()){
             return response()->json([
                 "message"=>'no chats found'
             ],404);
          }
-        return response()->json([
-            "message"=>$chat,
-            "state"=>"success"
-        ]);
+        return response()->json($chat);
     }
 }
 

@@ -45,7 +45,7 @@ Route::group(
 ],
 function() {
     Route::get('/id/{id}', 'getScriptbyID');
-    Route::get('/{username}', 'getScriptbyUsername');
+    Route::get('/{username_1}', 'getScriptbyUsername');
     Route::get('/search/{username}','getScriptbyLike');
     Route::post('/name','getScriptbyname');
 });
@@ -64,4 +64,4 @@ function() {
     Route::get('/{id}', 'getMessagesbychat_id');
 });
 
-Route::apiResource('messages', messageController::class)->middleware('admin');
+Route::apiResource('messages', messageController::class)->middleware('user');

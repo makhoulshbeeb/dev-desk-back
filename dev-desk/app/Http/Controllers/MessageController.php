@@ -68,9 +68,9 @@ class MessageController extends Controller
                 'state' => 'success'
             ], 201);
         }
-    public function destroy(Message $id)
+    public function destroy(Message $message)
     {
-        $id->delete();
+        $message->delete();
         return response()->json(null, 204);
     }
 
