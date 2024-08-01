@@ -47,7 +47,7 @@ class ScriptController extends Controller
         if (!$script) {
             return response()->json(['error' => 'Script not found'], 404);
         }
-        return response()->json($script, 200);
+        return response()->json([$script], 200);
     }
 
 
