@@ -19,9 +19,9 @@ class User
         
         // Check if the user is authenticated
         if (!$user) {
-            return response()->json([
+            return response()->json([[
                 "message" => "user not authenticated"
-            ]);
+            ]]);
         }
         return $next($request);
     }

@@ -80,9 +80,9 @@ class ChatController extends Controller
     {
         $chat=Chat::where("username_1",$username_1)->get();
         if ($chat->isEmpty()){
-            return response()->json([
+            return response()->json([[
                 "message"=>'no chats found'
-            ],404);
+            ]],404);
          }
         return response()->json($chat);
     }

@@ -20,14 +20,14 @@ class Admin
         
         // Check if the user is authenticated
         if (!$user) {
-            return response()->json([
+            return response()->json([[
                 "message" => "user not authenticated"
-            ]);
+            ]]);
         }
         if ($user->role != 1) {
-            return response()->json([
+            return response()->json([[
                 "message" => "unauthorized"
-            ]);
+            ]]);
         }
 
         return $next($request);
