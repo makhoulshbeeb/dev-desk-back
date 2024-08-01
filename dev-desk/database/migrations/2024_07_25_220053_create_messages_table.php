@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('username');
             $table->foreignId('chat_id')->constrained('chats')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('username')->references('username_1')->on('chats'); 
+            $table->foreign('username')->references('username_1')->on('chats')->onDelete('cascade')->onUpdate('cascade'); 
             $table->text('message');
             // $table->foreignId('sender_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
